@@ -42,7 +42,7 @@ class DayDetailViewController: UITableViewController {
         hideKeyboard()
     }
 
-    //    MARK: Custom methods
+    //    MARK: - Custom methods
     
     func setupDateView() {
         let dateFormatter = DateFormatter()
@@ -53,7 +53,7 @@ class DayDetailViewController: UITableViewController {
         dateLabel.text = dateFormatter.string(from: birthdayPicker.date)
     }
     
-    //    MARK: Navigation
+    //    MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
@@ -80,14 +80,14 @@ class DayDetailViewController: UITableViewController {
         }
     }
     
-    //    MARK: IBActions
+    //    MARK: - IBActions
     
     @IBAction func datePickerValueChanged() {
         setupDateView()
     }
 }
 
-    // MARK: Extensions
+    // MARK: - Extensions
 
 extension DayDetailViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -58,6 +58,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="BnA-rz-ECI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="1RP-K8-9YB"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rua-Zg-0Yb">
                             <connections>
                                 <segue destination="W57-ub-uSL" kind="show" id="zNR-yl-RUj"/>
