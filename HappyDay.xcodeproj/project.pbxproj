@@ -14,7 +14,8 @@
 		AC90A7AD22D65B27002B4C34 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC90A7AC22D65B27002B4C34 /* Model.swift */; };
 		AC90A7AF22D65B41002B4C34 /* DaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC90A7AE22D65B41002B4C34 /* DaysTableViewController.swift */; };
 		AC90A7B122D65B97002B4C34 /* DayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC90A7B022D65B97002B4C34 /* DayDetailViewController.swift */; };
-		ACC89D9522DDCE9900D6CD4A /* BirthdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC89D9422DDCE9900D6CD4A /* BirthdayCell.swift */; };
+		ACC89D9722E238C000D6CD4A /* IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC89D9622E238C000D6CD4A /* IndexPath.swift */; };
+		ACC89D9A22E241DA00D6CD4A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC89D9922E241D900D6CD4A /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,8 @@
 		AC90A7AC22D65B27002B4C34 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AC90A7AE22D65B41002B4C34 /* DaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysTableViewController.swift; sourceTree = "<group>"; };
 		AC90A7B022D65B97002B4C34 /* DayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailViewController.swift; sourceTree = "<group>"; };
-		ACC89D9422DDCE9900D6CD4A /* BirthdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayCell.swift; sourceTree = "<group>"; };
+		ACC89D9622E238C000D6CD4A /* IndexPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IndexPath.swift; path = ../IndexPath.swift; sourceTree = "<group>"; };
+		ACC89D9922E241D900D6CD4A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +63,8 @@
 		AC90A79922D65AF2002B4C34 /* HappyDay */ = {
 			isa = PBXGroup;
 			children = (
+				ACC89D9822E2419C00D6CD4A /* Extensions */,
 				AC90A7B222D65BA3002B4C34 /* Model */,
-				AC90A7B422D65BB1002B4C34 /* View */,
 				AC90A7B322D65BA9002B4C34 /* Controllers */,
 				AC90A7B522D65BB9002B4C34 /* Supporting files */,
 			);
@@ -86,14 +88,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		AC90A7B422D65BB1002B4C34 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				ACC89D9422DDCE9900D6CD4A /* BirthdayCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		AC90A7B522D65BB9002B4C34 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +97,16 @@
 				AC90A79A22D65AF2002B4C34 /* AppDelegate.swift */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		ACC89D9822E2419C00D6CD4A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ACC89D9622E238C000D6CD4A /* IndexPath.swift */,
+				ACC89D9922E241D900D6CD4A /* UIViewController+Extension.swift */,
+			);
+			name = Extensions;
+			path = Model/Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,10 +181,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC90A79B22D65AF2002B4C34 /* AppDelegate.swift in Sources */,
+				ACC89D9722E238C000D6CD4A /* IndexPath.swift in Sources */,
 				AC90A7AD22D65B27002B4C34 /* Model.swift in Sources */,
 				AC90A7AF22D65B41002B4C34 /* DaysTableViewController.swift in Sources */,
+				ACC89D9A22E241DA00D6CD4A /* UIViewController+Extension.swift in Sources */,
 				AC90A7B122D65B97002B4C34 /* DayDetailViewController.swift in Sources */,
-				ACC89D9522DDCE9900D6CD4A /* BirthdayCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

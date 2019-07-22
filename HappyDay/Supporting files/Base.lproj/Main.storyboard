@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Дни рождения-->
+        <!--Events-->
         <scene sceneID="s8q-E3-NQI">
             <objects>
                 <tableViewController id="HkL-v2-4kp" customClass="DaysTableViewController" customModule="HappyDay" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,22 +17,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" id="jIN-i2-c4D">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="A-Z"/>
+                                <segment title="Date"/>
+                            </segments>
+                        </segmentedControl>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="NFF-V0-X4e" detailTextLabel="2yb-UL-luq" style="IBUITableViewCellStyleValue1" id="PDU-mI-ZKy">
-                                <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="otd-6G-ZQO" detailTextLabel="KYS-wu-o78" style="IBUITableViewCellStyleValue1" id="3qA-v2-S3S">
+                                <rect key="frame" x="0.0" y="85.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PDU-mI-ZKy" id="ZoZ-sN-Qjc">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3qA-v2-S3S" id="iaH-RZ-pEB">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NFF-V0-X4e">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="otd-6G-ZQO">
                                             <rect key="frame" x="16" y="12" width="45" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Age" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2yb-UL-luq">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Age" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KYS-wu-o78">
                                             <rect key="frame" x="274" y="12" width="30" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,28 +57,31 @@
                             <outlet property="delegate" destination="HkL-v2-4kp" id="09k-PC-u7u"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Дни рождения" id="BnA-rz-ECI">
+                    <navigationItem key="navigationItem" title="Events" id="BnA-rz-ECI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rua-Zg-0Yb">
                             <connections>
                                 <segue destination="W57-ub-uSL" kind="show" id="zNR-yl-RUj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sortingSegmentControl" destination="jIN-i2-c4D" id="eP0-kg-R8f"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saj-Gp-TmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2118.75" y="80.281690140845072"/>
         </scene>
-        <!--Новое событие-->
+        <!--New event-->
         <scene sceneID="irw-sn-jpC">
             <objects>
                 <tableViewController id="hGa-rD-BwB" customClass="DayDetailViewController" customModule="HappyDay" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="10" sectionFooterHeight="10" id="Apn-oB-LrM">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="10" sectionFooterHeight="10" contentViewInsetsToSafeArea="NO" id="Apn-oB-LrM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Именинник" id="sSF-Nx-vvt">
+                            <tableViewSection headerTitle="Person" id="sSF-Nx-vvt">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="mqf-ja-3si">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
@@ -79,7 +90,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Имя" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sag-m6-UWS">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sag-m6-UWS">
                                                     <rect key="frame" x="16" y="0.0" width="288" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -96,82 +107,117 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Фамилия" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cij-X6-n4T">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Surname" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cij-X6-n4T">
                                                     <rect key="frame" x="16" y="0.0" width="288" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="family-name"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TPp-mU-zOx">
+                                        <rect key="frame" x="0.0" y="143.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TPp-mU-zOx" id="95n-Eo-onZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Mobile phone" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksd-r4-lDp">
+                                                    <rect key="frame" x="16" y="0.0" width="288" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="phonePad" textContentType="tel"/>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Контактные данные" id="fZg-sU-Td1">
+                            <tableViewSection headerTitle="Date" id="0lE-am-Woj">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="s9x-bt-jXd">
-                                        <rect key="frame" x="0.0" y="191.5" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s9x-bt-jXd" id="PAN-Ha-Bck">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Мобильный телефон" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i4O-pa-24x">
-                                                    <rect key="frame" x="16" y="0.0" width="288" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" smartInsertDeleteType="yes" textContentType="tel"/>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="O00-gt-pOl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="birthdayCell" textLabel="U1k-2i-fok" detailTextLabel="wCb-YL-vG5" style="IBUITableViewCellStyleValue1" id="mnL-FZ-Fav">
                                         <rect key="frame" x="0.0" y="235.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O00-gt-pOl" id="jdR-zw-D2f">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mnL-FZ-Fav" id="nMx-Oy-GRS">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="@" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SD9-TQ-NCr">
-                                                    <rect key="frame" x="16" y="0.0" width="288" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U1k-2i-fok">
+                                                    <rect key="frame" x="16" y="12" width="36" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" smartInsertDeleteType="yes" textContentType="email"/>
-                                                </textField>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="01.01.2011" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wCb-YL-vG5">
+                                                    <rect key="frame" x="225.5" y="12" width="78.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Дата" id="0lE-am-Woj">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="7Sa-GK-pAH">
-                                        <rect key="frame" x="0.0" y="327.5" width="320" height="140"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="datePickerCell" rowHeight="140" id="7Sa-GK-pAH">
+                                        <rect key="frame" x="0.0" y="279.5" width="320" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Sa-GK-pAH" id="gBj-OY-DRC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ne6-0a-lSR">
+                                                <datePicker tag="1" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ne6-0a-lSR">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="584627954.57063401">
                                                         <!--2019-07-12 12:39:14 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="datePickerValueChanged" destination="hGa-rD-BwB" eventType="valueChanged" id="zGx-Cd-P5e"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="ne6-0a-lSR" secondAttribute="bottom" id="LcX-Gc-33c"/>
-                                                <constraint firstItem="ne6-0a-lSR" firstAttribute="leading" secondItem="gBj-OY-DRC" secondAttribute="leading" id="ZcI-Eh-vqs"/>
-                                                <constraint firstItem="ne6-0a-lSR" firstAttribute="top" secondItem="gBj-OY-DRC" secondAttribute="top" id="c6F-ss-n4a"/>
+                                                <constraint firstAttribute="trailing" secondItem="ne6-0a-lSR" secondAttribute="trailing" id="9OS-w4-RxE"/>
+                                                <constraint firstItem="ne6-0a-lSR" firstAttribute="leading" secondItem="gBj-OY-DRC" secondAttribute="leading" id="FfJ-sv-IdM"/>
+                                                <constraint firstItem="ne6-0a-lSR" firstAttribute="top" secondItem="gBj-OY-DRC" secondAttribute="top" id="HLr-pk-O3e"/>
+                                                <constraint firstAttribute="bottom" secondItem="ne6-0a-lSR" secondAttribute="bottom" id="P3H-rz-as0"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="ne6-0a-lSR" firstAttribute="centerX" secondItem="7Sa-GK-pAH" secondAttribute="centerX" id="HcR-kr-k6t"/>
-                                            <constraint firstItem="ne6-0a-lSR" firstAttribute="centerY" secondItem="7Sa-GK-pAH" secondAttribute="centerY" id="nTY-gb-ULu"/>
-                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Remind" id="pct-fB-PVt">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="e3f-13-BAk">
+                                        <rect key="frame" x="0.0" y="467.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e3f-13-BAk" id="6pb-OU-p8t">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1tp-3P-Nka">
+                                                    <rect key="frame" x="16" y="7" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="co7-e2-hCj">
+                                                    <rect key="frame" x="218" y="12.5" width="86" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="1tp-3P-Nka" secondAttribute="bottom" constant="6" id="9A5-Zk-ztx"/>
+                                                <constraint firstItem="1tp-3P-Nka" firstAttribute="leading" secondItem="6pb-OU-p8t" secondAttribute="leading" constant="16" id="DFe-cY-oCM"/>
+                                                <constraint firstItem="co7-e2-hCj" firstAttribute="trailing" secondItem="6pb-OU-p8t" secondAttribute="trailingMargin" id="SKW-jx-t6a"/>
+                                                <constraint firstItem="1tp-3P-Nka" firstAttribute="top" secondItem="6pb-OU-p8t" secondAttribute="top" constant="7" id="Zaz-fo-c38"/>
+                                                <constraint firstAttribute="bottom" secondItem="co7-e2-hCj" secondAttribute="bottom" constant="11.5" id="gkI-k0-unj"/>
+                                                <constraint firstItem="co7-e2-hCj" firstAttribute="top" secondItem="6pb-OU-p8t" secondAttribute="top" constant="12.5" id="nfm-Yg-gbQ"/>
+                                                <constraint firstItem="co7-e2-hCj" firstAttribute="centerY" secondItem="1tp-3P-Nka" secondAttribute="centerY" id="p5Y-XX-48T"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -181,7 +227,7 @@
                             <outlet property="delegate" destination="hGa-rD-BwB" id="RsD-ZM-Naq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Новое событие" id="pNF-cI-PcH">
+                    <navigationItem key="navigationItem" title="New event" id="pNF-cI-PcH">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eO8-eR-OWE">
                             <connections>
                                 <segue destination="4m8-Ii-EZr" kind="unwind" identifier="cancelSegue" unwindAction="unwindCancelTapped:" id="482-Pn-guY"/>
@@ -195,9 +241,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="birthdayPicker" destination="ne6-0a-lSR" id="E9j-YX-VF5"/>
-                        <outlet property="textFieldEmail" destination="SD9-TQ-NCr" id="RPC-jl-SfP"/>
+                        <outlet property="dateLabel" destination="wCb-YL-vG5" id="cST-Gd-vs6"/>
+                        <outlet property="remindSwitch" destination="1tp-3P-Nka" id="jHu-En-rvJ"/>
+                        <outlet property="scrollBottomConst" destination="ne6-0a-lSR" id="vbq-Sv-PFA"/>
                         <outlet property="textFieldName" destination="sag-m6-UWS" id="hzy-WM-jtV"/>
-                        <outlet property="textFieldPhone" destination="i4O-pa-24x" id="d1b-ZS-og1"/>
+                        <outlet property="textFieldPhone" destination="ksd-r4-lDp" id="mZl-Sw-vBF"/>
                         <outlet property="textFieldSurname" destination="Cij-X6-n4T" id="fLT-j4-Ofn"/>
                     </connections>
                 </tableViewController>
