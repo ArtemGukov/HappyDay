@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DayDetailViewController: UITableViewController {
+class AddEventTableViewController: UITableViewController {
 
     //    MARK: - IB Outlets
     
@@ -23,15 +23,15 @@ class DayDetailViewController: UITableViewController {
     
     @IBOutlet weak var scrollBottomConst: NSLayoutConstraint!
     
-
-    
     //    MARK: - Properties
-
-    let birthdayDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     
-    var isBirthdayPickerShown = false {
+    var newEvent = Event()
+
+    let eventDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
+    
+    var isEventPickerShown = false {
         didSet {
-            birthdayPicker.isHidden = !isBirthdayPickerShown
+            birthdayPicker.isHidden = !isEventPickerShown
         }
     }
 
@@ -61,16 +61,36 @@ class DayDetailViewController: UITableViewController {
         switch identifier {
         case "saveSegue":
             
-            let newBirthday = Birthday()
+            let eventsTableViewController = segue.destination as! EventsTableViewController
             
-            newBirthday.id = UUID().uuidString
-            newBirthday.firstName = textFieldName.text!
-            newBirthday.lastName = textFieldSurname.text!
-            newBirthday.mobilePhone = textFieldPhone.text!
-            newBirthday.birthdayDate = birthdayPicker.date
+            guard textFieldName.text != "", textFieldSurname.text != "" else { return }
             
-            let destination = segue.destination as! DaysTableViewController
-            destination.birthdays.append(newBirthday)
+            newEvent.id = UUID().uuidString
+            newEvent.firstName = textFieldName.text!
+            newEvent.lastName = textFieldSurname.text!
+            newEvent.mobilePhone = textFieldPhone.text!
+            newEvent.eventDate = birthdayPicker.date
+            newEvent.age = calculateAge()
+            
+            if let dueDate = newEvent.eventDate {
+                if eventsTableViewController.events[dueDate.month] == nil {
+                    eventsTableViewController.events[dueDate.month] = [newEvent]
+                } else {
+                    eventsTableViewController.events[dueDate.month]?.append(newEvent)
+                }
+                
+                eventsTableViewController.monthsSection.removeAll(keepingCapacity: false)
+                
+                let formatter: DateFormatter = {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MMMM"
+                    return dateFormatter
+                } ()
+                
+                eventsTableViewController.monthsSection = eventsTableViewController.events.keys.sorted(by: { formatter.date(from: $0)! < formatter.date(from: $1)! })
+            
+                eventsTableViewController.tableView.reloadData()
+            }
             
         case "cancelSegue":
             print("Cancel tapped")
@@ -78,6 +98,19 @@ class DayDetailViewController: UITableViewController {
         default:
             print("Error")
         }
+    }
+    
+    //    MARK: - Custom methods
+    
+    func calculateAge() -> String {
+        let now = Date()
+        let eventNew: Date = newEvent.eventDate!
+        let calendar = Calendar.current
+        
+        let ageComponents = calendar.dateComponents([.year], from: eventNew, to: now)
+        let age = String(ageComponents.year!)
+        
+        return age
     }
     
     //    MARK: - IBActions
@@ -89,27 +122,27 @@ class DayDetailViewController: UITableViewController {
 
     // MARK: - Extensions
 
-extension DayDetailViewController {
+extension AddEventTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch indexPath {
-        case birthdayDatePickerCellIndexPath:
-            return isBirthdayPickerShown ? UITableView.automaticDimension : 0
+        case eventDatePickerCellIndexPath:
+            return isEventPickerShown ? UITableView.automaticDimension : 0
         default:
             return UITableView.automaticDimension
         }
     }
 }
 
-extension DayDetailViewController {
+extension AddEventTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath {
-        case birthdayDatePickerCellIndexPath.prevRow:
-            isBirthdayPickerShown.toggle()
-            isBirthdayPickerShown = isBirthdayPickerShown ? true : isBirthdayPickerShown
+        case eventDatePickerCellIndexPath.prevRow:
+            isEventPickerShown.toggle()
+            isEventPickerShown = isEventPickerShown ? true : isEventPickerShown
         default:
             return
         }
@@ -120,7 +153,8 @@ extension DayDetailViewController {
 }
 
 // MARK: - Keyboard method
-extension DayDetailViewController {
+
+extension AddEventTableViewController {
     func registerForKeyboardNotifications() {
         
         let names: [NSNotification.Name] = [

@@ -8,52 +8,62 @@
 
 import UIKit
 
-class DaysTableViewController: UITableViewController {
+class EventsTableViewController: UITableViewController {
     
-    //    MARK: IBOutlets
+    //    MARK: - IBOutlets
     
     @IBOutlet weak var sortingSegmentControl: UISegmentedControl!
     
-    var birthdays = [Birthday]() {
+    //    MARK: - Properties
+    
+    var events: Dictionary<String, Array<Event>> = [:] {
         didSet {
             tableView.reloadData()
         }
     }
+    
+    var monthsSection = [String]()
 
     let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
-        setupViewDate()
+        sortingSegmentControl.isHidden = true
     }
     
     //    MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return monthsSection.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return birthdays.count
+        return events[monthsSection[section]]!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let birthdayNew = birthdays[indexPath.row]
+        let newEvent = events[monthsSection[indexPath.section]]!
+        
+        cell.textLabel?.text = newEvent[indexPath.row].lastName! + " " + newEvent[indexPath.row].firstName!
 
-        cell.textLabel?.text = birthdayNew.lastName + " " + birthdayNew.firstName
-        cell.detailTextLabel?.text = dateFormatter.string(from: birthdayNew.birthdayDate)
+//        dateFormatter.dateFormat = "dd MMMM yyyy"
+//        let dateString = dateFormatter.string(from: (newEvent[indexPath.row]).eventDate!)
+        
+        cell.detailTextLabel?.text = newEvent[indexPath.row].age!
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        return nil
+        let calendar = Calendar.current
+        let currentYear = String(calendar.component(.year, from: Date()))
+    
+        return (monthsSection[section] + " " + currentYear)
     }
     
     //    MARK: - Delete & edit cell
@@ -63,39 +73,40 @@ class DaysTableViewController: UITableViewController {
     }
     
    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
     
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             print("Delete tapped")
             
-            self.birthdays.remove(at: indexPath.row)
-            tableView.beginUpdates()
-            tableView.endUpdates()
+            self.events[self.monthsSection[indexPath.section]]?.remove(at: indexPath.row)
+            
+            if self.events[self.monthsSection[indexPath.section]]!.isEmpty {
+                self.monthsSection.delete(element: self.monthsSection[indexPath.section])
+            }
+            
+            tableView.reloadData()
         })
     
         deleteAction.backgroundColor = UIColor.red
     
         let editAction = UITableViewRowAction(style: .default, title: "Edit", handler: { (action, indexPath) in
             print("Edit tapped")
+            
+            //tableView.reloadData()
         })
         editAction.backgroundColor = UIColor.orange
         
         return [deleteAction, editAction]
     }
     
-    // MARK: - Custom methods
+    //    MARK: - Navigation
     
-    func setupViewDate() {
-        
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        //dateFormatter.locale = Locale(identifier: "ru_RU")
-    }
-    
-    func setupUI() {
-        
-        sortingSegmentControl.isHidden = true
-    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "detail" else { return }
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let detailEventViewController = segue.destination as! DetailEventlViewController
+                detailEventViewController.birthday = events[monthsSection[indexPath.section]]![indexPath.row]
+            }
+        }
     
     // MARK: - IBActions
     
@@ -107,3 +118,5 @@ class DaysTableViewController: UITableViewController {
         
     }
 }
+
+

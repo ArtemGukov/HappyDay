@@ -8,11 +8,11 @@
 
 import UIKit
 
-class Birthday {
-    var id = ""
-    var firstName = ""
-    var lastName = ""
-    var mobilePhone = ""
-    var email = ""
-    var birthdayDate = Date()
+struct Event {
+    var id: String?
+    var firstName: String?
+    var lastName: String?
+    var mobilePhone: String?
+    var age: String?
+    var eventDate: Date?
 }
