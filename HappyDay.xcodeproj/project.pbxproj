@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC04FE5222E6398100D7964E /* DetailEventlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC04FE5122E6398100D7964E /* DetailEventlViewController.swift */; };
+		AC04FE5222E6398100D7964E /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC04FE5122E6398100D7964E /* DetailEventViewController.swift */; };
+		AC85B5C922F221CC0029FCF6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC85B5C822F221CC0029FCF6 /* UITextField+Extension.swift */; };
 		AC890CB822EDFF7F0054EEC4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC890CB722EDFF7F0054EEC4 /* Date.swift */; };
 		AC890CBA22EE40B40054EEC4 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC890CB922EE40B40054EEC4 /* Array.swift */; };
 		AC90A79B22D65AF2002B4C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC90A79A22D65AF2002B4C34 /* AppDelegate.swift */; };
@@ -22,7 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AC04FE5122E6398100D7964E /* DetailEventlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventlViewController.swift; sourceTree = "<group>"; };
+		AC04FE5122E6398100D7964E /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
+		AC85B5C822F221CC0029FCF6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		AC890CB722EDFF7F0054EEC4 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		AC890CB922EE40B40054EEC4 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		AC90A79722D65AF2002B4C34 /* HappyDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +92,7 @@
 			children = (
 				AC90A7AE22D65B41002B4C34 /* EventsTableViewController.swift */,
 				AC90A7B022D65B97002B4C34 /* AddEventTableViewController.swift */,
-				AC04FE5122E6398100D7964E /* DetailEventlViewController.swift */,
+				AC04FE5122E6398100D7964E /* DetailEventViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -109,10 +111,11 @@
 		ACC89D9822E2419C00D6CD4A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				ACC89D9622E238C000D6CD4A /* IndexPath.swift */,
-				AC890CB722EDFF7F0054EEC4 /* Date.swift */,
-				ACC89D9922E241D900D6CD4A /* UIViewController+Extension.swift */,
 				AC890CB922EE40B40054EEC4 /* Array.swift */,
+				AC890CB722EDFF7F0054EEC4 /* Date.swift */,
+				ACC89D9622E238C000D6CD4A /* IndexPath.swift */,
+				AC85B5C822F221CC0029FCF6 /* UITextField+Extension.swift */,
+				ACC89D9922E241D900D6CD4A /* UIViewController+Extension.swift */,
 			);
 			name = Extensions;
 			path = Model/Extensions;
@@ -194,10 +197,11 @@
 				AC890CB822EDFF7F0054EEC4 /* Date.swift in Sources */,
 				AC90A7AD22D65B27002B4C34 /* Model.swift in Sources */,
 				AC90A7AF22D65B41002B4C34 /* EventsTableViewController.swift in Sources */,
+				AC85B5C922F221CC0029FCF6 /* UITextField+Extension.swift in Sources */,
 				AC890CBA22EE40B40054EEC4 /* Array.swift in Sources */,
 				ACC89D9A22E241DA00D6CD4A /* UIViewController+Extension.swift in Sources */,
 				AC90A7B122D65B97002B4C34 /* AddEventTableViewController.swift in Sources */,
-				AC04FE5222E6398100D7964E /* DetailEventlViewController.swift in Sources */,
+				AC04FE5222E6398100D7964E /* DetailEventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

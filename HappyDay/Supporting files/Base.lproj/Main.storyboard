@@ -51,7 +51,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="1D5-Up-4yw" kind="show" identifier="detail" id="xns-d3-lX8"/>
+                                    <segue destination="1D5-Up-4yw" kind="show" identifier="detailSegue" id="xhw-Ph-Gn4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -62,7 +62,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="BnA-rz-ECI">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="1RP-K8-9YB"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rua-Zg-0Yb">
                             <connections>
                                 <segue destination="W57-ub-uSL" kind="show" id="zNR-yl-RUj"/>
@@ -101,6 +100,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" textContentType="name"/>
+                                                    <connections>
+                                                        <action selector="textChange" destination="hGa-rD-BwB" eventType="editingChanged" id="sSJ-2A-75c"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -118,6 +120,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                    <connections>
+                                                        <action selector="textChange" destination="hGa-rD-BwB" eventType="editingChanged" id="Bnh-6M-auL"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -135,6 +140,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="phonePad" textContentType="tel"/>
+                                                    <connections>
+                                                        <action selector="textChange" destination="hGa-rD-BwB" eventType="editingChanged" id="24L-vV-kPe"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -181,6 +189,7 @@
                                                     </date>
                                                     <connections>
                                                         <action selector="datePickerValueChanged" destination="hGa-rD-BwB" eventType="valueChanged" id="zGx-Cd-P5e"/>
+                                                        <action selector="textChange" destination="hGa-rD-BwB" eventType="valueChanged" id="Qch-9s-htk"/>
                                                     </connections>
                                                 </datePicker>
                                             </subviews>
@@ -248,6 +257,7 @@
                         <outlet property="birthdayPicker" destination="ne6-0a-lSR" id="E9j-YX-VF5"/>
                         <outlet property="dateLabel" destination="wCb-YL-vG5" id="cST-Gd-vs6"/>
                         <outlet property="remindSwitch" destination="1tp-3P-Nka" id="jHu-En-rvJ"/>
+                        <outlet property="saveButton" destination="N5b-KF-tYF" id="gJB-9X-CFh"/>
                         <outlet property="scrollBottomConst" destination="ne6-0a-lSR" id="vbq-Sv-PFA"/>
                         <outlet property="textFieldName" destination="sag-m6-UWS" id="hzy-WM-jtV"/>
                         <outlet property="textFieldPhone" destination="ksd-r4-lDp" id="mZl-Sw-vBF"/>
@@ -257,7 +267,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCw-VP-ej0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4m8-Ii-EZr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4018.125" y="50.70422535211268"/>
+            <point key="canvasLocation" x="3023" y="80"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WKd-Au-RJE">
@@ -293,12 +303,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jcK-Mg-P3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3020.625" y="50.70422535211268"/>
+            <point key="canvasLocation" x="3023" y="-757"/>
         </scene>
-        <!--Detail Eventl View Controller-->
+        <!--Detail Event View Controller-->
         <scene sceneID="AmP-dv-MAC">
             <objects>
-                <viewController id="1D5-Up-4yw" customClass="DetailEventlViewController" customModule="HappyDay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1D5-Up-4yw" customClass="DetailEventViewController" customModule="HappyDay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f1Y-mV-9EB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -411,6 +421,13 @@
                         <viewLayoutGuide key="safeArea" id="IfL-NT-2zj"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" id="lQI-mM-cvm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="ORu-n1-DbL">
+                            <connections>
+                                <segue destination="hGa-rD-BwB" kind="show" identifier="editSegue" id="jmP-ot-dhr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="rai-ad-fBI" id="lbI-ok-vQa"/>
                         <outlet property="nameLabel" destination="Kad-HM-p62" id="s8H-ab-Guc"/>
@@ -422,4 +439,7 @@
             <point key="canvasLocation" x="2118.75" y="864.08450704225356"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jmP-ot-dhr"/>
+    </inferredMetricsTieBreakers>
 </document>

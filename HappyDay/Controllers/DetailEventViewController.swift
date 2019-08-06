@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailEventlViewController: UIViewController {
+class DetailEventViewController: UIViewController {
     
     //    MARK: - IB Outlets
     
@@ -18,7 +18,7 @@ class DetailEventlViewController: UIViewController {
     
     //    MARK: - Properties
 
-    var birthday: Event!
+    var currentEvent: Event!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +28,19 @@ class DetailEventlViewController: UIViewController {
     
     func setupUI() {
         
-        nameLabel.text = birthday.lastName! + " " + birthday.firstName!
-        phoneLabel.text = birthday.mobilePhone
+        nameLabel.text = currentEvent.lastName! + " " + currentEvent.firstName!
+        phoneLabel.text = currentEvent.mobilePhone
         //dateLabel.text = DateFormatter.localizedString(from: birthday.birthdayDate, dateStyle: .medium, timeStyle: .none) + ", а возраст: " + "\(calculateAge())"
     }
+    
+    //    MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "editSegue" else { return }
+        guard let addEventTableViewController = segue.destination as? AddEventTableViewController else { return }
+        addEventTableViewController.currentEvent = currentEvent
+    }
+    
     
     //    MARK: - IB Actions
 

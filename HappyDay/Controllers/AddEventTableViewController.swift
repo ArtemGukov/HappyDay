@@ -23,8 +23,11 @@ class AddEventTableViewController: UITableViewController {
     
     @IBOutlet weak var scrollBottomConst: NSLayoutConstraint!
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     //    MARK: - Properties
     
+    var currentEvent: Event?
     var newEvent = Event()
 
     let eventDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
@@ -35,10 +38,18 @@ class AddEventTableViewController: UITableViewController {
         }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupEditScreen()
+        saveButton.isEnabled = false
+        setupDateView()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        setupDateView()
+        //setupDateView()
         hideKeyboard()
     }
 
@@ -51,6 +62,14 @@ class AddEventTableViewController: UITableViewController {
         //dateFormatter.locale = Locale(identifier: "ru_RU")
         birthdayPicker.maximumDate = Date()
         dateLabel.text = dateFormatter.string(from: birthdayPicker.date)
+    }
+    
+    func updateUI() {
+        saveButton.isEnabled = areFieldsReady()
+    }
+    
+    func areFieldsReady() -> Bool {
+        return !textFieldName.isEmpty && !textFieldSurname.isEmpty && !textFieldPhone.isEmpty
     }
     
     //    MARK: - Navigation
@@ -75,6 +94,8 @@ class AddEventTableViewController: UITableViewController {
             if let dueDate = newEvent.eventDate {
                 if eventsTableViewController.events[dueDate.month] == nil {
                     eventsTableViewController.events[dueDate.month] = [newEvent]
+                    
+                    print(#line, #function, newEvent)
                 } else {
                     eventsTableViewController.events[dueDate.month]?.append(newEvent)
                 }
@@ -88,8 +109,16 @@ class AddEventTableViewController: UITableViewController {
                 } ()
                 
                 eventsTableViewController.monthsSection = eventsTableViewController.events.keys.sorted(by: { formatter.date(from: $0)! < formatter.date(from: $1)! })
-            
+                
                 eventsTableViewController.tableView.reloadData()
+            }
+            
+            if currentEvent != nil {
+                currentEvent?.id = newEvent.id
+                currentEvent?.firstName = newEvent.firstName
+                currentEvent?.lastName = newEvent.lastName
+                currentEvent?.mobilePhone = newEvent.mobilePhone
+                currentEvent?.eventDate = newEvent.eventDate
             }
             
         case "cancelSegue":
@@ -113,10 +142,31 @@ class AddEventTableViewController: UITableViewController {
         return age
     }
     
+    private func setupEditScreen() {
+        if currentEvent != nil {
+            setupNavigationBar()
+            
+            textFieldName.text = currentEvent?.firstName
+            textFieldSurname.text = currentEvent?.lastName
+            textFieldPhone.text = currentEvent?.mobilePhone
+            birthdayPicker.date = currentEvent!.eventDate!
+            
+        }
+    }
+    
+    private func setupNavigationBar() {
+        //navigationItem.leftBarButtonItem = nil
+        title = currentEvent!.lastName! + " " + currentEvent!.firstName!
+    }
+    
     //    MARK: - IBActions
     
     @IBAction func datePickerValueChanged() {
         setupDateView()
+    }
+    
+    @IBAction func textChange() {
+        updateUI()
     }
 }
 
@@ -180,6 +230,18 @@ extension AddEventTableViewController {
         }
         
         scrollBottomConst.constant = constant + 20
-        
     }
+}
+
+extension AddEventTableViewController {
+    
+    func alertWrongMessage(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
 }
